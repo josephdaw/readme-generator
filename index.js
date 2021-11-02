@@ -7,67 +7,85 @@ const promptUser = () => {
   return inquirer.prompt([
     {
       type: 'input',
-      name: 'name',
-      message: 'What is your name?',
+      name: 'title',
+      message: 'What is the project title?',
     },
     {
       type: 'input',
-      name: 'location',
-      message: 'Where are you from?',
+      name: 'description',
+      message: 'Please provide a short description of the project.',
     },
     {
       type: 'input',
-      name: 'hobby',
-      message: 'What is your favorite hobby?',
+      name: 'installation',
+      message: 'Please provide instructions of how to install.',
     },
     {
       type: 'input',
-      name: 'food',
-      message: 'What is your favorite food?',
+      name: 'usage',
+      message: 'Please outline the usage.',
     },
     {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
-    },
-    {
-      type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
-    },
+        type: 'list',
+        name: 'license',
+        message: 'Please outline the usage.',
+        choices: ['MIT', 'GNU GPLv3', 'Apache', 'The Unlicense']
+      },
+      {
+        type: 'input',
+        name: 'contributing',
+        message: 'Please outline how someone can contribute to the project.',
+      },
+      {
+        type: 'input',
+        name: 'tests',
+        message: 'Please outline how to test the project.',
+      },
   ]);
 };
 
-const generateHTML = ({ name, location, github, linkedin }) =>
-  `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Hi! My name is ${name}</h1>
-    <p class="lead">I am from ${location}.</p>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${github}</li>
-      <li class="list-group-item">LinkedIn: ${linkedin}</li>
-    </ul>
-  </div>
-</div>
-</body>
-</html>`;
+const generateMarkdown = ({ title, description, installation, usage, license, contributing, tests}) =>
+  `# ${title}
+
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  ![NodeJS](https://img.shields.io/badge/node.js-6DA55F.svg?&logo=node.js&logoColor=white)
+  
+  ## Table of Contents
+  - [Description](#description)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [Tests](#tests)
+  - [Questions](#questions)
+  - [Credits](#credits)
+  - [License](#license)
+  
+  ## Description
+  ${description}
+  
+  ## Installation
+  ${installation}
+  
+  ## Usage
+  ${usage}
+  
+  ## Tests
+  ${tests}
+
+  ## Contributing
+  ${contributing}
+  
+  ## Questions
+ 
+  ## License
+  This project is released under the [${license} License](LICENSE)`;
 
 // Bonus using writeFileSync as a promise
 const init = () => {
   promptUser()
   // Use writeFileSync method to use promises instead of a callback function
-    .then((answers) => fs.writeFileSync('index.html', generateHTML(answers)))
-    .then(() => console.log('Successfully wrote to index.html'))
+    .then((answers) => fs.writeFileSync('README.md', generateMarkdown(answers)))
+    .then(() => console.log('Successfully wrote to README.md'))
     .catch((err) => console.error(err));
 };
 
