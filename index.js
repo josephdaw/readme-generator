@@ -58,7 +58,8 @@ function init() {
     promptUser()
     .then((answers) => generateMarkdown(answers))
     .then((data)=> writeToFile('README.md',data))
-    
+    .then(() => console.log('Success'))
+    .catch((err) => console.error('Something went wrong: ',err));
 };
 
 // Function call to initialize app
