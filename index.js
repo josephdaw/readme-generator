@@ -9,38 +9,38 @@ const questions = [
         type: 'input',
         name: 'title',
         message: 'What is the project title?',
-      },
-      {
+    },
+    {
         type: 'input',
         name: 'description',
         message: 'Please provide a short description of the project.',
-      },
-      {
+    },
+    {
         type: 'input',
         name: 'installation',
         message: 'Please provide instructions of how to install.',
-      },
-      {
+    },
+    {
         type: 'input',
         name: 'usage',
         message: 'Please outline the usage.',
-      },
-      {
-          type: 'list',
-          name: 'license',
-          message: 'Please outline the usage.',
-          choices: ['MIT', 'GNU', 'Apache', 'Unlicense']
-        },
-        {
-          type: 'input',
-          name: 'contributing',
-          message: 'Please outline how someone can contribute to the project.',
-        },
-        {
-          type: 'input',
-          name: 'tests',
-          message: 'Please outline how to test the project.',
-        },
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Please outline the usage.',
+        choices: ['MIT', 'GNU', 'Apache', 'Unlicense']
+    },
+    {
+        type: 'input',
+        name: 'contributing',
+        message: 'Please outline how someone can contribute to the project.',
+    },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'Please outline how to test the project.',
+    },
 ];
 
 // function to write README file
@@ -48,8 +48,18 @@ function writeToFile(fileName, data) {
     fs.writeFileSync(fileName, data)
 }
 
-// TODO: Create a function to initialize app
-function init() {}
+// function to prompt user
+function promptUser() {
+    return inquirer.prompt(questions)
+};
+
+// function to initialize app
+function init() {
+    promptUser()
+    .then((answers) => generateMarkdown(answers))
+    .then((data)=> writeToFile('README.md',data))
+    
+};
 
 // Function call to initialize app
 init();
