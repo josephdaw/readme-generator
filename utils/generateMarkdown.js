@@ -2,28 +2,42 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license){
-    console.log("renderLicenseBadge")
     return `![License](https://img.shields.io/badge/License-${license}-yellow.svg)`
   }
-  console.log("no license")
+
   return ""
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  console.log("renderLicenseLink")
+  if (license){
+    console.log("renderLicenseLink")
+  return `- [License](#license)`
+  };
+
+  return ""
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  console.log("renderLicenseSection")
+  if (license) {
+    console.log("renderLicenseSection")
+    return `## License
+    This project is released under the [${license} License](LICENSE)`
+  };
+
+  return ""
 }
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  console.log(data.license)
   const licenseBadge = renderLicenseBadge(data.license);
+  const licenseLink = renderLicenseLink(data.license);
+  const licenseSection = renderLicenseSection(data.license);
+
   return `# ${data.title}
   ${licenseBadge}
   ![NodeJS](https://img.shields.io/badge/node.js-6DA55F.svg?&logo=node.js&logoColor=white)
@@ -36,7 +50,8 @@ function generateMarkdown(data) {
   - [Tests](#tests)
   - [Questions](#questions)
   - [Credits](#credits)
-  - [License](#license)
+  ${licenseLink}
+  
   
   ## Description
   ${data.description}
@@ -55,8 +70,7 @@ function generateMarkdown(data) {
   
   ## Questions
  
-  ## License
-  This project is released under the [${data.license} License](LICENSE)
+  ${licenseSection}
 `;
 }
 
