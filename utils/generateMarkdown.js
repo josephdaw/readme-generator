@@ -1,34 +1,31 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if (license){
-    return `![License](https://img.shields.io/badge/License-${license}-yellow.svg)`
+  if (license === "None") {
+    return ""
   }
-
-  return ""
+  return `![License](https://img.shields.io/badge/License-${license}-yellow.svg)`
 }
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
-  if (license){
-    console.log("renderLicenseLink")
-  return `- [License](#license)`
+  if (license === "None") {
+    return ""
   };
-
-  return ""
+  console.log("renderLicenseLink")
+  return `- [License](#license)`
 }
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
-  if (license) {
-    console.log("renderLicenseSection")
-    return `## License
-    This project is released under the [${license} License](LICENSE)`
+  if (license === "None") {
+    return ""
   };
-
-  return ""
+  console.log("renderLicenseSection")
+  return `## License
+  This project is released under the [${license} License](LICENSE)`
 }
 
 // TODO: Create a function to generate markdown for README
@@ -61,15 +58,17 @@ function generateMarkdown(data) {
   
   ## Usage
   ${data.usage}
-  
-  ## Tests
-  ${data.tests}
 
   ## Contributing
   ${data.contributing}
+
+  ## Tests
+  ${data.tests}
   
   ## Questions
- 
+  If you have any further questions regarding this project, please reach out to be via email at ${data.email}.
+  You can also check out my [GitHub profile](https://github.com/${data.githubName}) for other ways to get in touch.
+
   ${licenseSection}
 `;
 }

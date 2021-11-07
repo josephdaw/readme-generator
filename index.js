@@ -28,8 +28,8 @@ const questions = [
     {
         type: 'list',
         name: 'license',
-        message: 'Please outline the usage.',
-        choices: ['MIT', 'GNU', 'Apache', 'Unlicense']
+        message: 'Please select this license you want to use.',
+        choices: ['MIT', 'GNU', 'Apache', 'None']
     },
     {
         type: 'input',
@@ -40,6 +40,16 @@ const questions = [
         type: 'input',
         name: 'tests',
         message: 'Please outline how to test the project.',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'What is your email address?',
+    },
+    {
+        type: 'input',
+        name: 'githubName',
+        message: 'What is your GitHub username?',
     },
 ];
 
