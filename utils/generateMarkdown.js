@@ -13,7 +13,6 @@ function renderLicenseLink(license) {
   if (license === "None") {
     return ""
   };
-  console.log("renderLicenseLink")
   return `- [License](#license)`
 }
 
@@ -23,7 +22,6 @@ function renderLicenseSection(license) {
   if (license === "None") {
     return ""
   };
-  console.log("renderLicenseSection")
   return `## License
   This project is released under the [${license} License](LICENSE)`
 }
